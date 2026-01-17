@@ -1,0 +1,841 @@
+[{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac5d"
+  },
+  "name": "Chocolate Lava Cake",
+  "category": "Cake",
+  "price": 12.99,
+  "image": "https://images.unsplash.com/photo-1600326145308-d7d5a04f4ce6?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Rich chocolate cake with a molten center, served warm.",
+  "ingredients": "Dark chocolate, butter, eggs, sugar, flour",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 person",
+  "stock": 50
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac5e"
+  },
+  "name": "Strawberry Cheesecake",
+  "category": "Cake",
+  "price": 15.5,
+  "image": "https://images.unsplash.com/photo-1676300186833-057912886971?q=80&w=695&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Creamy cheesecake with a fresh strawberry topping.",
+  "ingredients": "Cream cheese, sugar, eggs, graham cracker crust, strawberries",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 30
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac5f"
+  },
+  "name": "French Macarons",
+  "category": "Pastry",
+  "price": 2.5,
+  "image": "https://images.unsplash.com/photo-1586464635318-f4f40ecab6fd?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Delicate almond meringue cookies with various fillings.",
+  "ingredients": "Almond flour, egg whites, sugar, food coloring, butter, flavorings",
+  "allergens": "Nuts, Eggs, Dairy",
+  "servingSize": "1 piece",
+  "stock": 100
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac60"
+  },
+  "name": "Croissant",
+  "category": "Pastry",
+  "price": 3.75,
+  "image": "https://images.unsplash.com/photo-1612366747681-e4ca6992b1e9?q=80&w=804&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Flaky, buttery pastry, perfect for breakfast or a snack.",
+  "ingredients": "Flour, butter, milk, sugar, yeast, salt",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 70
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac61"
+  },
+  "name": "Chocolate Chip Cookie",
+  "category": "Cookie",
+  "price": 2,
+  "image": "https://plus.unsplash.com/premium_photo-1672073871234-7f2de18b9e5d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Warm, chewy chocolate chip cookie, a timeless favorite.",
+  "ingredients": "Flour, butter, brown sugar, white sugar, eggs, chocolate chips",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 120
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac62"
+  },
+  "name": "Apple Pie Slice",
+  "category": "Pastry",
+  "price": 7.5,
+  "image": "https://i.pinimg.com/736x/4a/a5/0a/4aa50a06d59af6a6e08b434d787527c6.jpg",
+  "description": "Warm, classic apple pie with cinnamon spices and a flaky crust.",
+  "ingredients": "Apples, flour, butter, sugar, cinnamon, nutmeg",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 slice",
+  "stock": 40
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac63"
+  },
+  "name": "Key Lime Pie",
+  "category": "Cake",
+  "price": 11.99,
+  "image": "https://i.pinimg.com/1200x/c8/94/d7/c894d7cd5015b585bac1f9e840a23ca0.jpg",
+  "description": "Sweet and tart lime filling in a graham cracker crust, topped with whipped cream.",
+  "ingredients": "Key lime juice, condensed milk, eggs, graham cracker crust, cream",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 35
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac64"
+  },
+  "name": "Biscotti (Almond)",
+  "category": "Cookie",
+  "price": 3,
+  "image": "https://i.pinimg.com/1200x/66/b3/56/66b3561d01cd91374a5709edfd2e29d8.jpg",
+  "description": "Hard, crunchy Italian cookie, perfect for dipping in coffee.",
+  "ingredients": "Flour, sugar, eggs, almonds, baking powder",
+  "allergens": "Nuts, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 150
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac65"
+  },
+  "name": "Doughnut (Glazed)",
+  "category": "Pastry",
+  "price": 2.25,
+  "image": "https://i.pinimg.com/1200x/66/75/fe/6675fe80cec7c9ae75aedeb53a20134d.jpg",
+  "description": "Soft, fluffy fried dough covered in a sweet sugar glaze.",
+  "ingredients": "Flour, yeast, milk, butter, sugar, glaze",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 130
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac66"
+  },
+  "name": "Opera Cake",
+  "category": "Cake",
+  "price": 16.5,
+  "image": "https://i.pinimg.com/736x/62/0a/85/620a859c4342c67f8590bebb1d336451.jpg",
+  "description": "French layered sponge cake with coffee buttercream and chocolate ganache.",
+  "ingredients": "Almond sponge, coffee syrup, buttercream, chocolate",
+  "allergens": "Nuts, Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 20
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac67"
+  },
+  "name": "Shortbread Cookie",
+  "category": "Cookie",
+  "price": 1.5,
+  "image": "https://i.pinimg.com/736x/2b/61/91/2b61913ee1e87a88f62c296e18a645ce.jpg",
+  "description": "Buttery, crumbly cookie, classic British treat.",
+  "ingredients": "Butter, sugar, flour",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 180
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac68"
+  },
+  "name": "Cannoli",
+  "category": "Pastry",
+  "price": 4.5,
+  "image": "https://i.pinimg.com/1200x/63/5b/96/635b969c4a5472c45da7a81feed1d5fd.jpg",
+  "description": "Crispy fried shell filled with sweet ricotta cheese.",
+  "ingredients": "Ricotta cheese, sugar, flour, wine, cinnamon",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+    "stock": 65
+  },
+  {
+    "_id": {
+    "$oid": "691b2cfff064ad5d149bac69"
+  },
+  "name": "Carrot Cake",
+  "category": "Cake",
+  "price": 10.99,
+  "image": "https://i.pinimg.com/1200x/28/d4/c7/28d4c7f65c2e5ed40284889bbddaae81.jpg",
+  "description": "Moist cake with shredded carrots, walnuts, and cream cheese frosting.",
+  "ingredients": "Carrots, flour, sugar, eggs, cream cheese, walnuts",
+  "allergens": "Nuts, Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 38
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac6a"
+  },
+  "name": "Gingerbread Man",
+  "category": "Cookie",
+  "price": 2.5,
+  "image": "https://i.pinimg.com/1200x/77/f7/bd/77f7bdfac3cfc0db785998596537a7dd.jpg",
+  "description": "Spiced cookie cut into the shape of a man, decorated with icing.",
+  "ingredients": "Flour, molasses, ginger, cinnamon, butter",
+  "allergens": "Gluten",
+  "servingSize": "1 piece",
+  "stock": 70
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac6b"
+  },
+  "name": "Puff Pastry with Jam",
+  "category": "Pastry",
+  "price": 3.25,
+  "image": "https://i.pinimg.com/736x/10/30/5a/10305a20bd22d650a96fa77ed8d7b840.jpg",
+  "description": "Light, airy pastry filled with seasonal fruit jam.",
+  "ingredients": "Flour, butter, water, fruit jam",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 85
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac6c"
+  },
+  "name": "Black Forest Cake",
+  "category": "Cake",
+  "price": 13.5,
+  "image": "https://i.pinimg.com/736x/d2/c1/d3/d2c1d39abb38181e64fb567f8752f496.jpg",
+  "description": "Chocolate sponge cake with cherry filling and whipped cream.",
+  "ingredients": "Chocolate, cream, cherries, kirsch, sugar, flour",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 28
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac6d"
+  },
+  "name": "Oatmeal Raisin Cookie (Vegan)",
+  "category": "Cookie",
+  "price": 2.75,
+  "image": "https://i.pinimg.com/736x/04/4d/36/044d369f716ac78b7a1c7be2f3634986.jpg",
+  "description": "Chewy, healthy cookie made without any animal products.",
+  "ingredients": "Oats, raisins, flour, plant-based butter, maple syrup",
+  "allergens": "Gluten",
+  "servingSize": "1 piece",
+  "stock": 95
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac6e"
+  },
+  "name": "Scone (Plain)",
+  "category": "Pastry",
+  "price": 3.5,
+  "image": "https://i.pinimg.com/736x/7d/77/2b/7d772b59206777c94f39ae822a1fc471.jpg",
+  "description": "Lightly sweetened baked good, best served with clotted cream and jam.",
+  "ingredients": "Flour, baking powder, butter, milk, sugar",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 60
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac6f"
+  },
+  "name": "Victoria Sponge",
+  "category": "Cake",
+  "price": 9,
+  "image": "https://i.pinimg.com/736x/4b/c1/a3/4bc1a32990b6d938eb156be56b2e3a90.jpg",
+  "description": "Two layers of sponge cake filled with jam and whipped cream.",
+  "ingredients": "Butter, sugar, eggs, flour, strawberry jam, cream",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 30
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac70"
+  },
+  "name": "Peanut Butter Cookie",
+  "category": "Cookie",
+  "price": 2,
+  "image": "https://i.pinimg.com/736x/b6/4c/ff/b64cff6237eaa4381057ec7990007451.jpg",
+  "description": "Soft, rich cookie with a distinct peanut butter flavor.",
+  "ingredients": "Peanut butter, sugar, eggs, flour",
+  "allergens": "Nuts, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 115
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac71"
+  },
+  "name": "Muffin (Blueberry)",
+  "category": "Pastry",
+  "price": 4,
+  "image": "https://i.pinimg.com/1200x/69/8c/d9/698cd98945274dbe7205782d10f101d8.jpg",
+  "description": "Moist, sweet baked good filled with fresh blueberries.",
+  "ingredients": "Flour, sugar, eggs, milk, blueberries, baking powder",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 78
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac72"
+  },
+  "name": "Tiramisu (Gluten-Free)",
+  "category": "Cake",
+  "price": 14.5,
+  "image": "https://i.pinimg.com/1200x/10/0f/06/100f065f741a3f90d2ef8eee72792c39.jpg",
+  "description": "The classic Italian dessert adapted to be gluten-free.",
+  "ingredients": "Mascarpone, coffee, GF ladyfingers, eggs, cocoa",
+  "allergens": "Dairy, Eggs",
+  "servingSize": "1 slice",
+  "stock": 25
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac73"
+  },
+  "name": "Pistachio Macaron",
+  "category": "Pastry",
+  "price": 2.75,
+  "image": "https://i.pinimg.com/736x/3b/67/e0/3b67e026fa783d961fbd3b8dcedcac46.jpg",
+  "description": "Green almond meringue cookie with a creamy pistachio filling.",
+  "ingredients": "Almond flour, egg whites, sugar, pistachio paste",
+  "allergens": "Nuts, Eggs, Dairy",
+  "servingSize": "1 piece",
+  "stock": 105
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac74"
+  },
+  "name": "Whoopie Pie",
+  "category": "Cookie",
+  "price": 3.5,
+  "image": "https://i.pinimg.com/736x/f2/2d/37/f22d3757da7c3ce769c2bce3aa8e0726.jpg",
+  "description": "Two soft cookies sandwiching a creamy, marshmallow-like filling.",
+  "ingredients": "Flour, cocoa, baking soda, milk, butter, powdered sugar",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 68
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac75"
+  },
+  "name": "Danish Pastry (Cheese)",
+  "category": "Pastry",
+  "price": 4.25,
+  "image": "https://i.pinimg.com/736x/05/53/6b/05536b79b414b0ad6728343eba050be7.jpg",
+  "description": "Flaky pastry with a sweet, cream cheese center.",
+  "ingredients": "Puff pastry, cream cheese, sugar, vanilla",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 55
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac76"
+  },
+  "name": "Tres Leches Cake",
+  "category": "Cake",
+  "price": 11.5,
+  "image": "https://i.pinimg.com/1200x/cf/99/33/cf993358a182e48e5c345ea3d1f328ea.jpg",
+  "description": "Sponge cake soaked in three kinds of milk: evaporated, condensed, and heavy cream.",
+  "ingredients": "Flour, eggs, milk blend, sugar, cream",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 33
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac77"
+  },
+  "name": "Hazelnut Cookie",
+  "category": "Cookie",
+  "price": 2.5,
+  "image": "https://i.pinimg.com/736x/90/49/a7/9049a779812d2a27c4288a2e513ba310.jpg",
+  "description": "Rich, nutty cookie with finely chopped hazelnuts.",
+  "ingredients": "Flour, butter, sugar, eggs, hazelnuts",
+  "allergens": "Nuts, Dairy, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 98
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac78"
+  },
+  "name": "Baklava",
+  "category": "Pastry",
+  "price": 5,
+  "image": "https://i.pinimg.com/736x/67/e8/d8/67e8d8bb0beb93be4b051388f008e178.jpg",
+  "description": "Rich, sweet pastry made of layers of filo dough filled with chopped nuts and sweetened with syrup.",
+  "ingredients": "Filo dough, walnuts/pistachios, butter, sugar, honey",
+  "allergens": "Nuts, Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 70
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac79"
+  },
+  "name": "Boston Cream Pie",
+  "category": "Cake",
+  "price": 10.5,
+  "image": "https://i.pinimg.com/1200x/48/d3/c2/48d3c2157f367dce1887ae53b31c2d28.jpg",
+  "description": "Two layers of sponge cake filled with pastry cream and topped with chocolate glaze.",
+  "ingredients": "Flour, eggs, milk, sugar, pastry cream, chocolate",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 22
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac7a"
+  },
+  "name": "Thumbprint Cookie",
+  "category": "Cookie",
+  "price": 1.75,
+  "image": "https://i.pinimg.com/1200x/9b/03/fb/9b03fbac29022ebdd4ea42c466f7a28b.jpg",
+  "description": "Butter cookie with an indentation filled with raspberry jam.",
+  "ingredients": "Flour, butter, sugar, eggs, jam",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 100
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac7b"
+  },
+  "name": "Pain au Chocolat",
+  "category": "Pastry",
+  "price": 4.75,
+  "image": "https://i.pinimg.com/736x/ba/dc/d0/badcd05521204942788135c232734a03.jpg",
+  "description": "A variant of the croissant containing one or two pieces of dark chocolate.",
+  "ingredients": "Flour, butter, milk, sugar, yeast, chocolate",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 60
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac7c"
+  },
+  "name": "New York Cheesecake (Slice)",
+  "category": "Cake",
+  "price": 12.5,
+  "image": "https://i.pinimg.com/736x/62/d2/e5/62d2e5878efb730c58e1df9ad18d5195.jpg",
+  "description": "Dense, smooth, and rich cheesecake with a light vanilla flavor.",
+  "ingredients": "Cream cheese, sugar, eggs, vanilla, graham cracker crust",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 29
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac7d"
+  },
+  "name": "Lace Cookie",
+  "category": "Cookie",
+  "price": 1.5,
+  "image": "https://i.pinimg.com/1200x/6a/26/eb/6a26eb6967ce77d4d43c074cd9c209cb.jpg",
+  "description": "Delicate, crispy cookie with a buttery, caramel flavor.",
+  "ingredients": "Butter, sugar, molasses, oats, flour",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 140
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac7e"
+  },
+  "name": "Crème Brûlée Tart",
+  "category": "Pastry",
+  "price": 8.5,
+  "image": "https://i.pinimg.com/1200x/ec/a1/31/eca1319829072a0edab91b0bbc4ea164.jpg",
+  "description": "Classic custard dessert baked into a tart shell with a torched sugar crust.",
+  "ingredients": "Cream, eggs, sugar, vanilla, pastry shell",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 50
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac7f"
+  },
+  "name": "Sacher Torte",
+  "category": "Cake",
+  "price": 15,
+  "image": "https://i.pinimg.com/736x/ca/71/e9/ca71e9d87726a25b8b2a85445eee425b.jpg",
+  "description": "Dense chocolate cake with a thin layer of apricot jam and dark chocolate icing.",
+  "ingredients": "Chocolate, butter, eggs, sugar, flour, apricot jam",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 18
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac80"
+  },
+  "name": "Meringue Cookie",
+  "category": "Cookie",
+  "price": 1.25,
+  "image": "https://i.pinimg.com/1200x/29/ce/54/29ce54123c32a6b6557c3505926bdbaa.jpg",
+  "description": "Light and airy cookie made from whipped egg whites and sugar.",
+  "ingredients": "Egg whites, sugar, vanilla extract",
+  "allergens": "Eggs",
+  "servingSize": "1 piece",
+  "stock": 160
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac81"
+  },
+  "name": "Kolache (Fruit)",
+  "category": "Pastry",
+  "price": 3.75,
+  "image": "https://i.pinimg.com/1200x/99/df/31/99df3184761dacfe2cdb26a0054f6be1.jpg",
+  "description": "Sweet yeast pastry with a dollop of fruit filling in the center.",
+  "ingredients": "Flour, yeast, milk, eggs, sugar, fruit filling",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 58
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac82"
+  },
+  "name": "Pound Cake",
+  "category": "Cake",
+  "price": 8.5,
+  "image": "https://i.pinimg.com/1200x/ec/4d/33/ec4d337248f2c05be2768a401b1eb11e.jpg",
+  "description": "Simple, rich cake traditionally made with a pound of each ingredient.",
+  "ingredients": "Flour, butter, eggs, sugar",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 42
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac83"
+  },
+  "name": "Mexican Wedding Cookie",
+  "category": "Cookie",
+  "price": 2,
+  "image": "https://i.pinimg.com/1200x/6f/ca/03/6fca03f018b214102d753b641184a7ca.jpg",
+  "description": "Buttery, nutty cookie coated in powdered sugar.",
+  "ingredients": "Butter, flour, pecans/walnuts, powdered sugar",
+  "allergens": "Nuts, Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 125
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac84"
+  },
+  "name": "Beignet",
+  "category": "Pastry",
+  "price": 5.5,
+  "image": "https://i.pinimg.com/1200x/21/65/b9/2165b9e1d39e20efc211036e76ca4750.jpg",
+  "description": "French-style doughnut, square-shaped and covered in powdered sugar.",
+  "ingredients": "Flour, yeast, milk, sugar, oil for frying",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "3 pieces",
+  "stock": 65
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac85"
+  },
+  "name": "Angel Food Cake",
+  "category": "Cake",
+  "price": 9.99,
+  "image": "https://i.pinimg.com/736x/5d/f6/5f/5df65f7d1ed563ecd5f1e693d5b38e55.jpg",
+  "description": "Light, airy sponge cake made with only egg whites.",
+  "ingredients": "Egg whites, sugar, flour, cream of tartar",
+  "allergens": "Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 45
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac86"
+  },
+  "name": "Fudge Brownie (Gluten-Free)",
+  "category": "Cookie",
+  "price": 5,
+  "image": "https://i.pinimg.com/736x/4a/e8/87/4ae887a8eab92903e42e50c750cae224.jpg",
+  "description": "Super rich, chewy brownie made with almond flour.",
+  "ingredients": "Chocolate, butter, eggs, sugar, almond flour",
+  "allergens": "Nuts, Dairy, Eggs",
+  "servingSize": "1 piece",
+  "stock": 70
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac87"
+  },
+  "name": "Sfogliatella",
+  "category": "Pastry",
+  "price": 6,
+  "image": "https://i.pinimg.com/1200x/43/77/20/43772039aea0569d344233bd260eaca5.jpg",
+  "description": "Shell-shaped Italian pastry with a rich, citrus-scented ricotta filling.",
+  "ingredients": "Ricotta cheese, semolina, sugar, orange zest, puff pastry",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 35
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac88"
+  },
+  "name": "Tarte Tatin",
+  "category": "Cake",
+  "price": 12,
+  "image": "https://i.pinimg.com/736x/95/73/ca/9573caa6deccc767323e9cebb2153fce.jpg",
+  "description": "French upside-down pastry tart with caramelized apples.",
+  "ingredients": "Apples, butter, sugar, puff pastry",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 slice",
+  "stock": 25
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac89"
+  },
+  "name": "Linzer Cookie",
+  "category": "Cookie",
+  "price": 2.25,
+  "image": "https://i.pinimg.com/1200x/38/04/15/3804152800e71288a9ea18fdccfa7b51.jpg",
+  "description": "Nutty cookie sandwich filled with raspberry jam, dusted with powdered sugar.",
+  "ingredients": "Almond flour, butter, sugar, jam, cinnamon",
+  "allergens": "Nuts, Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 90
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac8a"
+  },
+  "name": "Financier",
+  "category": "Pastry",
+  "price": 3,
+  "image": "https://i.pinimg.com/736x/24/cc/04/24cc0403e9b629467474bb496f2ac1f7.jpg",
+  "description": "Small, moist French cake traditionally flavored with almond flour and brown butter.",
+  "ingredients": "Almond flour, brown butter, egg whites, sugar",
+  "allergens": "Nuts, Dairy, Eggs",
+  "servingSize": "1 piece",
+  "stock": 75
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac8b"
+  },
+  "name": "Pistachio Cake",
+  "category": "Cake",
+  "price": 11.99,
+  "image": "https://i.pinimg.com/736x/c0/c8/6c/c0c86c7887fec3655f14045dbecf725b.jpg",
+  "description": "Moist cake with a rich pistachio flavor and light cream cheese frosting.",
+  "ingredients": "Pistachios, flour, eggs, sugar, butter, cream cheese",
+  "allergens": "Nuts, Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 28
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac8c"
+  },
+  "name": "Biscotti (Chocolate)",
+  "category": "Cookie",
+  "price": 3.25,
+  "image": "https://i.pinimg.com/736x/d5/7d/c7/d57dc75abbfffc5e074e73f98f0ea0d5.jpg",
+  "description": "Crunchy Italian cookie with chocolate chunks.",
+  "ingredients": "Flour, sugar, eggs, choco chips, cocoa powder",
+  "allergens": "Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 135
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac8d"
+  },
+  "name": "Cronut (Laminated Doughnut)",
+  "category": "Pastry",
+  "price": 6.5,
+  "image": "https://i.pinimg.com/1200x/9a/74/1a/9a741afcc4da2749ce0ecaafe07b1513.jpg",
+  "description": "A croissant and doughnut hybrid, often filled with cream.",
+  "ingredients": "Flour, butter, sugar, yeast, cream, oil for frying",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 48
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac8e"
+  },
+  "name": "Lemon Poppy Seed Cake",
+  "category": "Cake",
+  "price": 9.5,
+  "image": "https://i.pinimg.com/1200x/8f/d2/79/8fd27976a105ada1dacb58afc49b6f65.jpg",
+  "description": "Bright, citrusy cake with poppy seeds, drizzled with a lemon glaze.",
+  "ingredients": "Lemon zest/juice, poppy seeds, flour, butter, eggs",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 37
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac8f"
+  },
+  "name": "Ginger Snap Cookie",
+  "category": "Cookie",
+  "price": 1.75,
+  "image": "https://i.pinimg.com/1200x/ed/ca/b1/edcab13b507f1d246544e8018355d939.jpg",
+  "description": "Crisp cookie with a strong ginger and molasses flavor.",
+  "ingredients": "Flour, molasses, ginger, cloves, butter",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 110
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac90"
+  },
+  "name": "Éclair (Salted Caramel)",
+  "category": "Pastry",
+  "price": 5.75,
+  "image": "https://i.pinimg.com/1200x/b4/db/ad/b4dbad634dee2c0443c963e8e6b0400b.jpg",
+  "description": "Choux pastry filled with salted caramel cream and topped with glaze.",
+  "ingredients": "Choux pastry, cream, sugar, salt, chocolate",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 52
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac91"
+  },
+  "name": "Mocha Layer Cake",
+  "category": "Cake",
+  "price": 13,
+  "image": "https://i.pinimg.com/736x/77/c2/f8/77c2f81715be61cb3af6f13bfcc01689.jpg",
+  "description": "Chocolate and coffee flavored layer cake with coffee buttercream.",
+  "ingredients": "Chocolate, coffee, flour, eggs, butter, sugar",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 24
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac92"
+  },
+  "name": "Shortbread (Lavender)",
+  "category": "Cookie",
+  "price": 1.75,
+  "image": "https://i.pinimg.com/736x/80/4f/7e/804f7e299c0b7f130124126e7f280724.jpg",
+  "description": "Buttery shortbread infused with delicate lavender flavor.",
+  "ingredients": "Butter, sugar, flour, dried lavender",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 80
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac93"
+  },
+  "name": "Bear Claw",
+  "category": "Pastry",
+  "price": 4,
+  "image": "https://i.pinimg.com/1200x/f1/bc/50/f1bc50ef8267a75964975f08e4d91f1f.jpg",
+  "description": "Sweet, yeast-raised pastry with an almond paste filling.",
+  "ingredients": "Flour, yeast, butter, eggs, almond paste",
+  "allergens": "Nuts, Dairy, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 60
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac94"
+  },
+  "name": "Hummingbird Cake",
+  "category": "Cake",
+  "price": 11,
+  "image": "https://i.pinimg.com/1200x/4b/29/de/4b29de69956341b2bd2dce76ce01115c.jpg",
+  "description": "Banana-pineapple spice cake with cream cheese frosting.",
+  "ingredients": "Bananas, pineapple, flour, eggs, oil, cream cheese",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 slice",
+  "stock": 31
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac95"
+  },
+  "name": "Cranberry Orange Scone",
+  "category": "Pastry",
+  "price": 3.75,
+  "image": "https://i.pinimg.com/1200x/af/4c/56/af4c56dedd944585a3035882354b7758.jpg",
+  "description": "Buttery scone with tart cranberries and sweet orange zest.",
+  "ingredients": "Flour, butter, milk, cranberries, orange zest",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 62
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac96"
+  },
+  "name": "Madeleine",
+  "category": "Cookie",
+  "price": 1,
+  "image": "https://i.pinimg.com/736x/34/d2/c1/34d2c1ad9b21c39bd8edd11a85974551.jpg",
+  "description": "Small French sponge cake with a distinctive shell shape.",
+  "ingredients": "Flour, eggs, butter, sugar, lemon zest",
+  "allergens": "Dairy, Eggs, Gluten",
+  "servingSize": "1 piece",
+  "stock": 200
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac97"
+  },
+  "name": "Pavlova (Berry)",
+  "category": "Cake",
+  "price": 15,
+  "image": "https://i.pinimg.com/1200x/4d/9b/3c/4d9b3c35a4e05f43f230bd2071c157cc.jpg",
+  "description": "Meringue-based dessert with a crisp crust and soft, light interior, topped with whipped cream and fresh berries.",
+  "ingredients": "Egg whites, sugar, cornstarch, cream, fresh berries",
+  "allergens": "Eggs, Dairy",
+  "servingSize": "1 piece",
+  "stock": 20
+},
+{
+  "_id": {
+    "$oid": "691b2cfff064ad5d149bac98"
+  },
+  "name": "Cinnamon Roll",
+  "category": "Pastry",
+  "price": 4.5,
+  "image": "https://i.pinimg.com/1200x/53/12/0f/53120f39addc5818d6abd11f1bf98c71.jpg",
+  "description": "Sweet rolled pastry covered in cinnamon and topped with cream cheese icing.",
+  "ingredients": "Flour, yeast, milk, butter, cinnamon, sugar, cream cheese",
+  "allergens": "Dairy, Gluten",
+  "servingSize": "1 piece",
+  "stock": 70
+}
+]

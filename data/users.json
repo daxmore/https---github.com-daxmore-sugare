@@ -1,0 +1,15 @@
+[
+  {
+    "fullname": "janvi",
+    "email": "janvi03@gmail.com",
+    "username": "janvi03",
+    "password": "janvi03"
+  },
+  {
+    "fullname": "Admin User",
+    "email": "admin@example.com",
+    "username": "Admin",
+    "password": "adminpassword",
+    "isAdmin": true
+  }
+]

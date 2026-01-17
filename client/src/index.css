@@ -1,0 +1,91 @@
+/* ==========================================
+    GLOBAL TYPOGRAPHY SETTINGS
+    Used across all pages and components
+    ========================================== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+}
+
+body, p, span, button, input, select, textarea {
+    font-family: 'Poppins', sans-serif;
+}
+
+.display-font {
+    font-family: 'Playfair Display', serif;
+}
+
+/* ==========================================
+    HOVER EFFECTS
+    Used in buttons, cards, and interactive elements
+    ========================================== */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.hover-glow {
+    transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 15px rgba(244, 114, 182, 0.5);
+}
+
+/* ==========================================
+    ANIMATION KEYFRAMES
+    General purpose animations used across the site
+    ========================================== */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* ... [keeping all your keyframe definitions] ... */
+
+/* ==========================================
+    ANIMATION CLASSES
+    Used for various UI elements and interactions
+    ========================================== */
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delay-1 {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.animate-float-delay-2 {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* ... [keeping all your animation classes] ... */
+
+/* ==========================================
+    PRODUCT COMPONENTS
+    Styles specific to product cards and images
+    ========================================== */
+.product-image {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+    width: 100%;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
