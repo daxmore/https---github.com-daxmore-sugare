@@ -1,15 +1,21 @@
 [
   {
-    "fullname": "janvi",
-    "email": "janvi03@gmail.com",
-    "username": "janvi03",
-    "password": "janvi03"
+    "fullname": "Chief Baker Admin",
+    "email": "admin@bakery.com",
+    "username": "admin",
+    "password": "adminpassword123",
+    "isAdmin": true,
+    "membershipTier": "GOLD"
   },
   {
-    "fullname": "Admin User",
-    "email": "admin@example.com",
-    "username": "Admin",
-    "password": "adminpassword",
-    "isAdmin": true
+    "fullname": "Test User",
+    "email": "testuser@gmail.com",
+    "username": "testuser",
+    "password": "password123",
+    "isAdmin": false,
+    "membershipTier": "GOLD",
+    "cakeCoins": 250,
+    "birthday": "2000-03-03",
+    "anniversary": "2022-06-15"
   }
 ]

@@ -1,109 +1,135 @@
-const mongoose = require('mongoose');
 const Dessert = require('../models/Dessert');
-const Wishlist = require('../models/Wishlist');
+const { processImage } = require('../utils/imageProcessor');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 
-// @desc    Fetch all desserts
-// @route   GET /api/desserts
-// @access  Public
+// Multer setup for temporary storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const dir = 'uploads/tmp';
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+    }
+    cb(null, dir);
+  },
+  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
+});
+
+const upload = multer({ storage }).single('image');
+
+const createDessert = async (req, res) => {
+  upload(req, res, async (err) => {
+    if (err) return res.status(400).json({ message: "Image upload failed" });
+
+    try {
+      const { 
+        name, description, basePrice, category, 
+        ingredients, allergens, servingSize, 
+        variants, modifiers, imageUrl 
+      } = req.body;
+
+      let finalImage = imageUrl;
+      let finalThumbnail = '';
+
+      if (req.file) {
+        const processedImages = await processImage(req.file);
+        finalImage = processedImages.image;
+        finalThumbnail = processedImages.thumbnail;
+      }
+
+      if (!finalImage) {
+        return res.status(400).json({ message: "Please provide an image file or URL" });
+      }
+
+      const newDessert = new Dessert({
+        name,
+        description,
+        basePrice,
+        category,
+        image: finalImage,
+        thumbnail: finalThumbnail || finalImage,
+        ingredients,
+        allergens,
+        servingSize,
+        variants: JSON.parse(variants || '[]'),
+        modifiers: JSON.parse(modifiers || '[]')
+      });
+
+      await newDessert.save();
+      res.status(201).json(newDessert);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+};
+
 const getDesserts = async (req, res) => {
   try {
-    const desserts = await Dessert.find({});
+    const { category, featured } = req.query;
+    let query = {};
+    if (category) query.category = category;
+    if (featured) query.isFeatured = featured === 'true';
+
+    const desserts = await Dessert.find(query).lean();
     res.json(desserts);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
-// @desc    Fetch desserts by category
-// @route   GET /api/desserts/category/:category
-// @access  Public
-const getDessertsByCategory = async (req, res) => {
-  try {
-    const desserts = await Dessert.find({ category: req.params.category });
-    res.json(desserts);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
-  }
-};
-
-// @desc    Fetch single dessert
-// @route   GET /api/desserts/:id
-// @access  Public
 const getDessertById = async (req, res) => {
   try {
     const dessert = await Dessert.findById(req.params.id);
-    if (dessert) {
-      res.json(dessert);
-    } else {
-      res.status(404).json({ message: 'Dessert not found' });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    if (!dessert) return res.status(404).json({ message: "Dessert not found" });
+    res.json(dessert);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
-const createDessert = async (req, res) => {
-  try {
-    const dessert = new Dessert(req.body);
-    const newDessert = await dessert.save();
-    res.status(201).json(newDessert);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-// @desc    Update a dessert
-// @route   PUT /api/desserts/:id
-// @access  Private/Admin
 const updateDessert = async (req, res) => {
-  try {
-    const dessert = await Dessert.findById(req.params.id);
+  upload(req, res, async (err) => {
+    if (err) return res.status(400).json({ message: "Image upload failed" });
 
-    if (dessert) {
-      dessert.name = req.body.name || dessert.name;
-      dessert.category = req.body.category || dessert.category;
-      dessert.price = req.body.price || dessert.price;
-      dessert.description = req.body.description || dessert.description;
-      dessert.image = req.body.image || dessert.image;
-      dessert.ingredients = req.body.ingredients || dessert.ingredients;
-      dessert.allergens = req.body.allergens || dessert.allergens;
-      dessert.servingSize = req.body.servingSize || dessert.servingSize;
+    try {
+      const { 
+        name, description, basePrice, category, 
+        ingredients, allergens, servingSize, 
+        variants, modifiers, imageUrl 
+      } = req.body;
 
-      const updatedDessert = await dessert.save();
-      res.json(updatedDessert);
-    } else {
-      res.status(404).json({ message: 'Dessert not found' });
+      let updateData = {
+        name, description, basePrice, category,
+        ingredients, allergens, servingSize,
+        variants: JSON.parse(variants || '[]'),
+        modifiers: JSON.parse(modifiers || '[]')
+      };
+
+      if (req.file) {
+        const processedImages = await processImage(req.file);
+        updateData.image = processedImages.image;
+        updateData.thumbnail = processedImages.thumbnail;
+      } else if (imageUrl) {
+        updateData.image = imageUrl;
+        updateData.thumbnail = imageUrl;
+      }
+
+      const dessert = await Dessert.findByIdAndUpdate(req.params.id, updateData, { new: true });
+      res.json(dessert);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
     }
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+  });
 };
 
-// @desc    Delete a dessert
-// @route   DELETE /api/desserts/:id
-// @access  Private/Admin
 const deleteDessert = async (req, res) => {
   try {
-    const dessert = await Dessert.findById(req.params.id);
-
-    if (!dessert) {
-      return res.status(404).json({ message: 'Dessert not found' });
-    }
-
-    // First, remove dessert from all wishlists
-    await Wishlist.updateMany(
-      { desserts: dessert._id },
-      { $pull: { desserts: dessert._id } }
-    );
-
-    // Then delete the dessert
     await Dessert.findByIdAndDelete(req.params.id);
-    
-    res.json({ message: 'Dessert removed successfully' });
-  } catch (error) {
-    console.error('Delete dessert error:', error);
-    res.status(500).json({ message: 'Server error while deleting dessert' });
+    res.json({ message: "Dessert deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
-module.exports = { getDesserts, getDessertsByCategory, getDessertById, createDessert, updateDessert, deleteDessert };
+module.exports = { createDessert, getDesserts, getDessertById, updateDessert, deleteDessert };

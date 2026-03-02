@@ -1,0 +1,26 @@
+[
+  {
+    "code": "WELCOME10",
+    "discountType": "PERCENTAGE",
+    "discountValue": 10,
+    "minOrderAmount": 500,
+    "expiryDate": "2026-12-31",
+    "usageLimit": 500
+  },
+  {
+    "code": "SAVE50",
+    "discountType": "FLAT",
+    "discountValue": 50,
+    "minOrderAmount": 200,
+    "expiryDate": "2026-12-31",
+    "usageLimit": 100
+  },
+  {
+    "code": "BDAY20",
+    "discountType": "PERCENTAGE",
+    "discountValue": 20,
+    "minOrderAmount": 0,
+    "expiryDate": "2026-12-31",
+    "usageLimit": 9999
+  }
+]

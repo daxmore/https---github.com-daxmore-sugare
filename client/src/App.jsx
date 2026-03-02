@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import { CartProvider } from './context/CartContext';
+import { WishlistProvider } from './context/WishlistContext';
+import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -20,6 +21,7 @@ import AdminLayout from './layouts/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ManageDesserts from './pages/admin/ManageDesserts';
 import ManageUsers from './pages/admin/ManageUsers';
+import ManageCoupons from './pages/admin/ManageCoupons';
 import Analytics from './pages/admin/Analytics';
 import Payment from './pages/Payment';
 import OrderHistory from './pages/OrderHistory';
@@ -58,10 +60,12 @@ const AppContent = () => {
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminRoute />}>
             <Route element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
               <Route path="dashboard" element={<AdminDashboard />} />
               <Route path="analytics" element={<Analytics />} />
               <Route path="desserts" element={<ManageDesserts />} />
               <Route path="users" element={<ManageUsers />} />
+              <Route path="coupons" element={<ManageCoupons />} />
               <Route path="orders" element={<ManageOrders />} />
             </Route>
           </Route>
@@ -72,18 +76,29 @@ const AppContent = () => {
   );
 }
 
-import { WishlistProvider } from './context/WishlistContext';
-
 function App() {
   return (
     <AuthProvider>
-      <CartProvider>
-        <WishlistProvider>
-          <Router>
-            <AppContent />
-          </Router>
-        </WishlistProvider>
-      </CartProvider>
+      <WishlistProvider>
+        <Router>
+          <Toaster 
+            position="top-right" 
+            reverseOrder={false} 
+            toastOptions={{
+              style: {
+                borderRadius: '16px',
+                background: '#fff',
+                color: '#333',
+                boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                padding: '16px 24px',
+                fontWeight: '600',
+                fontSize: '14px',
+              },
+            }}
+          />
+          <AppContent />
+        </Router>
+      </WishlistProvider>
     </AuthProvider>
   );
 }

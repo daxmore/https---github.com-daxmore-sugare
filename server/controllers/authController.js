@@ -1,131 +1,110 @@
 const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-// @desc    Register a new user
-// @route   POST /api/auth/register
-// @access  Public
-const registerUser = async (req, res) => {
-  const { fullname, email, username, password } = req.body;
-
+const register = async (req, res) => {
   try {
-    const userExists = await User.findOne({ email });
+    const { fullname, email, username, password, birthday } = req.body;
 
-    if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
-    }
+    // Check if user exists
+    const userExists = await User.findOne({ $or: [{ email }, { username }] });
+    if (userExists) return res.status(400).json({ message: "User already exists" });
 
-    const user = await User.create({
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = new User({
       fullname,
       email,
       username,
-      password, // In a real app, you should hash the password
+      password: hashedPassword,
+      birthday
     });
 
-    if (user) {
-      res.status(201).json({
-        _id: user._id,
-        fullname: user.fullname,
-        email: user.email,
-        username: user.username,
-        // token: generateToken(user._id), // You would generate a token here
-      });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    await newUser.save();
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
-// @desc    Auth user & get token
-// @route   POST /api/auth/login
-// @access  Public
-const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-
-  console.log('Login attempt with:', { email, password }); // Added for debugging
-
+const login = async (req, res) => {
   try {
-    const user = await User.findOne({ email });
+    const { username, password } = req.body;
 
-    console.log('User found in DB:', user); // Added for debugging
+    const user = await User.findOne({ username });
+    if (!user) return res.status(400).json({ message: "Invalid credentials" });
 
-    // In a real app, you would compare the password with the hashed password
-    if (user && (password === user.password)) {
-      console.log('Password comparison successful'); // Added for debugging
-      res.json({
-        _id: user._id,
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
+
+    const token = jwt.sign(
+      { id: user._id, isAdmin: user.isAdmin },
+      process.env.JWT_SECRET || 'your_fallback_secret',
+      { expiresIn: '7d' }
+    );
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    }).json({
+      message: "Logged in successfully",
+      user: {
+        id: user._id,
         fullname: user.fullname,
-        email: user.email,
         username: user.username,
+        email: user.email,
         isAdmin: user.isAdmin,
-        // token: generateToken(user._id),
-      });
-    } else {
-      console.log('Password comparison failed'); // Added for debugging
-      res.status(401).json({ message: 'Invalid email or password' });
-    }
-  } catch (error) {
-    console.error('Error during login:', error); // Added for debugging
-    res.status(500).json({ message: 'Server error' });
+        membershipTier: user.membershipTier,
+        cakeCoins: user.cakeCoins
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
-const getUsers = async (req, res) => {
+const logout = (req, res) => {
+  res.clearCookie('token').json({ message: "Logged out successfully" });
+};
+
+const getMe = async (req, res) => {
   try {
-    const users = await User.find({});
+    const user = await User.findById(req.user.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select('-password');
     res.json(users);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
-  }
-};
-
-// @desc    Delete user
-// @route   DELETE /api/auth/:id
-// @access  Private/Admin
-const deleteUser = async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
-
-    if (user) {
-      await user.deleteOne();
-      res.json({ message: 'User removed' });
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
 const updateUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-
-    if (user) {
-      user.fullname = req.body.fullname || user.fullname;
-      user.email = req.body.email || user.email;
-      user.username = req.body.username || user.username;
-      if (req.body.password) {
-        user.password = req.body.password; // In a real app, you should hash the password
-      }
-      user.profileImage = req.body.profileImage || user.profileImage;
-
-
-      const updatedUser = await user.save();
-
-      res.json({
-        _id: updatedUser._id,
-        fullname: updatedUser.fullname,
-        email: updatedUser.email,
-        username: updatedUser.username,
-        isAdmin: updatedUser.isAdmin,
-        profileImage: updatedUser.profileImage,
-        // token: generateToken(updatedUser._id),
-      });
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true }).select('-password');
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
-module.exports = { registerUser, loginUser, getUsers, deleteUser, updateUser };
+const deleteUser = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.json({ message: "User deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+module.exports = { register, login, logout, getMe, getAllUsers, updateUser, deleteUser };

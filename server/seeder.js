@@ -1,63 +1,67 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
+const bcrypt = require('bcryptjs');
+
+// Models
 const User = require('./models/User');
 const Dessert = require('./models/Dessert');
+const Order = require('./models/Order');
+const Wishlist = require('./models/Wishlist');
+const Coupon = require('./models/Coupon');
 
-// Connect to DB
-const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/dessert-selling';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
-
-// Read JSON files
-const users = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/users.json'), 'utf-8'));
-const desserts = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/desserts_data.json'), 'utf-8'));
-
-// Import data into DB
-const importData = async () => {
+const seedData = async () => {
   try {
-    await User.deleteMany();
-    await Dessert.deleteMany();
+    // 1. Connect to Database
+    const dbURI = 'mongodb://localhost:27017/dessert-selling';
+    await mongoose.connect(dbURI);
+    console.log('--- 🛡️  CONNECTED TO MONGODB ---');
 
-    await User.insertMany(users);
-    await Dessert.insertMany(desserts);
+    // 2. Clear All Existing Collections
+    console.log('--- 🧹  ERASING ALL DATABASE DATA... ---');
+    await Promise.all([
+        User.deleteMany(),
+        Dessert.deleteMany(),
+        Order.deleteMany(),
+        Wishlist.deleteMany(),
+        Coupon.deleteMany()
+    ]);
+    console.log('--- ✅  DATABASE IS NOW EMPTY ---');
 
-    // Create admin user
-    const adminExists = await User.findOne({ email: 'admin@example.com' });
-    if (!adminExists) {
-      await User.create({
-        fullname: 'Admin User',
-        email: 'admin@example.com',
-        username: 'admin',
-        password: 'adminpassword', // In a real app, you should hash the password
-        isAdmin: true,
-      });
-      console.log('Admin user created!');
+    // 3. Load JSON Files
+    const usersData = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/users.json'), 'utf-8'));
+    const dessertsData = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/desserts.json'), 'utf-8'));
+    const couponsData = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/coupons.json'), 'utf-8'));
+
+    // 4. Process and Insert Users (Hash Passwords)
+    console.log('--- 👤  IMPORTING USERS... ---');
+    for (let u of usersData) {
+        const salt = await bcrypt.genSalt(10);
+        u.password = await bcrypt.hash(u.password, salt);
     }
+    await User.insertMany(usersData);
 
-    console.log('Data Imported!');
+    // 5. Insert Desserts
+    console.log('--- 🍰  IMPORTING DESSERTS... ---');
+    await Dessert.insertMany(dessertsData);
+
+    // 6. Insert Coupons
+    console.log('--- 🎫  IMPORTING COUPONS... ---');
+    await Coupon.insertMany(couponsData);
+
+    console.log('--- 🚀  ALL DATA SEEDED SUCCESSFULLY! ---');
+    console.log('\nCREDENTIALS FOR VALIDATION:');
+    console.log('---------------------------');
+    console.log('ADMIN: user: admin | pass: adminpassword123');
+    console.log('TEST USER (GOLD): user: testuser | pass: password123');
+    console.log('---------------------------');
+
     process.exit();
   } catch (error) {
-    console.error(`${error}`);
+    console.error('--- ❌ SEEDING FAILED ---');
+    console.error(error);
     process.exit(1);
   }
 };
 
-// Destroy data
-const destroyData = async () => {
-  try {
-    await User.deleteMany();
-    await Dessert.deleteMany();
-
-    console.log('Data Destroyed!');
-    process.exit();
-  } catch (error) {
-    console.error(`${error}`);
-    process.exit(1);
-  }
-};
-
-if (process.argv[2] === '-d') {
-  destroyData();
-} else {
-  importData();
-}
+seedData();

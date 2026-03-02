@@ -1,91 +1,58 @@
-/* ==========================================
-    GLOBAL TYPOGRAPHY SETTINGS
-    Used across all pages and components
-    ========================================== */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-script: "Dancing Script", cursive;
+
+  --color-brand-50: #FDF8F5;
+  --color-brand-100: #F7EAE3;
+  --color-brand-200: #EED5C8;
+  --color-brand-500: #D97757;
+  --color-brand-600: #C06040;
+  --color-brand-800: #753520;
+  --color-brand-900: #4A2A20;
 }
 
-body, p, span, button, input, select, textarea {
-    font-family: 'Poppins', sans-serif;
-}
-
-.display-font {
-    font-family: 'Playfair Display', serif;
-}
-
-/* ==========================================
-    HOVER EFFECTS
-    Used in buttons, cards, and interactive elements
-    ========================================== */
-.hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-}
-
-.hover-glow {
-    transition: box-shadow 0.3s ease;
-}
-
-.hover-glow:hover {
-    box-shadow: 0 0 15px rgba(244, 114, 182, 0.5);
-}
-
-/* ==========================================
-    ANIMATION KEYFRAMES
-    General purpose animations used across the site
-    ========================================== */
-@keyframes float {
-  0% {
-    transform: translateY(0px);
+@layer base {
+  body {
+    @apply bg-[#FAFAFA] text-gray-900 font-sans antialiased selection:bg-brand-100 selection:text-brand-900;
   }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight text-gray-900 font-normal;
   }
 }
 
-/* ... [keeping all your keyframe definitions] ... */
-
-/* ==========================================
-    ANIMATION CLASSES
-    Used for various UI elements and interactions
-    ========================================== */
-.animate-float {
-    animation: float 3s ease-in-out infinite;
+@layer utilities {
+  .glass-nav {
+    @apply bg-white/80 backdrop-blur-xl border-b border-gray-100;
+  }
+  
+  .boutique-card {
+    @apply bg-white rounded-2xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300;
+  }
+  
+  .btn-elegant {
+    @apply px-8 py-3.5 bg-brand-500 text-white rounded-full font-medium tracking-wide hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/30 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 text-sm cursor-pointer;
+  }
+  
+  .btn-elegant-outline {
+    @apply px-8 py-3.5 bg-transparent border border-gray-200 text-gray-700 rounded-full font-medium tracking-wide hover:border-brand-500 hover:text-brand-500 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 text-sm cursor-pointer;
+  }
 }
 
-.animate-float-delay-1 {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0.5s;
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
-
-.animate-float-delay-2 {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 1s;
+::-webkit-scrollbar-track {
+  background: transparent;
 }
-
-/* ... [keeping all your animation classes] ... */
-
-/* ==========================================
-    PRODUCT COMPONENTS
-    Styles specific to product cards and images
-    ========================================== */
-.product-image {
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.5s ease;
-    width: 100%;
-    border-radius: 1rem 1rem 0 0;
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 rounded-full;
 }
-
-.product-card:hover .product-image {
-    transform: scale(1.05);
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-300;
 }

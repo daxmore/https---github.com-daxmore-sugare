@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { getDesserts, getDessertsByCategory, getDessertById, createDessert, updateDessert, deleteDessert } = require('../controllers/dessertController');
+const { createDessert, getDesserts, getDessertById, updateDessert, deleteDessert } = require('../controllers/dessertController');
+const { verifyAdmin } = require('./verifyToken');
 
 router.get('/', getDesserts);
-router.get('/category/:category', getDessertsByCategory);
 router.get('/:id', getDessertById);
-router.post('/', createDessert);
-router.put('/:id', updateDessert);
-router.delete('/:id', deleteDessert);
+
+// Admin Only Routes
+router.post('/', verifyAdmin, createDessert);
+router.put('/:id', verifyAdmin, updateDessert);
+router.delete('/:id', verifyAdmin, deleteDessert);
 
 module.exports = router;

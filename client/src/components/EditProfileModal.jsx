@@ -1,127 +1,112 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { X, User, Lock, Calendar, MapPin } from 'lucide-react';
+import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const EditProfileModal = ({ isOpen, onClose }) => {
   const { user, setUser } = useContext(AuthContext);
-  const [fullname, setFullname] = useState(user.fullname);
-  const [username, setUsername] = useState(user.username);
-  const [imageFile, setImageFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
-  const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]);
-  };
+  
+  const [formData, setFormData] = useState({
+    fullname: user.fullname,
+    username: user.username,
+    birthday: user.birthday ? new Date(user.birthday).toISOString().split('T')[0] : '',
+    anniversary: user.anniversary ? new Date(user.anniversary).toISOString().split('T')[0] : '',
+    address: user.addresses?.[0] || '', // Using the first address for simplicity
+    password: '',
+    confirmPassword: ''
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
+    if (formData.password && formData.password !== formData.confirmPassword) {
       alert("Passwords don't match!");
       return;
     }
 
-    let profileImage = user.profileImage;
-
-    if (imageFile) {
-      // In a real app, you would upload the file to a storage service (e.g., Cloudinary, S3)
-      // and get back a URL. For this example, we'll simulate it.
-      profileImage = URL.createObjectURL(imageFile);
-    } else if (imageUrl) {
-      profileImage = imageUrl;
-    }
-
-    const updatedProfile = { fullname, username, profileImage };
-    if (password) {
-      updatedProfile.password = password;
-    }
+    const payload = {
+        ...formData,
+        addresses: formData.address ? [formData.address] : []
+    };
 
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/${user._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedProfile),
-      });
-
-      if (res.ok) {
-        const updatedUser = await res.json();
-        setUser(updatedUser);
-        onClose();
-      }
+      const { data } = await axios.put(`http://localhost:5000/api/auth/update/${user._id}`, payload, { withCredentials: true });
+      setUser(data);
+      onClose();
+      alert("Profile updated successfully!");
     } catch (error) {
       console.error('Failed to update profile', error);
+      alert("Update failed");
     }
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4">Edit Profile</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Full Name</label>
-            <input
-              type="text"
-              value={fullname}
-              onChange={(e) => setFullname(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            />
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex justify-center items-center p-4">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white rounded-[40px] shadow-2xl w-full max-w-lg overflow-hidden relative"
+      >
+        <button onClick={onClose} className="absolute top-8 right-8 p-2 hover:bg-gray-100 rounded-full transition-colors z-10">
+            <X className="w-6 h-6 text-gray-400" />
+        </button>
+
+        <form onSubmit={handleSubmit} className="p-10">
+          <h2 className="text-3xl font-black text-gray-900 mb-8">Edit Profile</h2>
+          
+          <div className="space-y-6 max-h-[60vh] overflow-y-auto px-2">
+            <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Full Name</label>
+                    <input type="text" value={formData.fullname} onChange={(e) => setFormData({...formData, fullname: e.target.value})} className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 font-bold" />
+                </div>
+                <div className="space-y-1">
+                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Username</label>
+                    <input type="text" value={formData.username} onChange={(e) => setFormData({...formData, username: e.target.value})} className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 font-bold" />
+                </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Birthday</label>
+                    <input type="date" value={formData.birthday} onChange={(e) => setFormData({...formData, birthday: e.target.value})} className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 font-bold text-gray-500" />
+                </div>
+                <div className="space-y-1">
+                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Anniversary</label>
+                    <input type="date" value={formData.anniversary} onChange={(e) => setFormData({...formData, anniversary: e.target.value})} className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 font-bold text-gray-500" />
+                </div>
+            </div>
+
+            <div className="space-y-1">
+                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Your Address</label>
+                <textarea 
+                    value={formData.address} 
+                    onChange={(e) => setFormData({...formData, address: e.target.value})} 
+                    placeholder="Enter your street address, apartment, city..."
+                    className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-orange-500 font-bold h-24" 
+                />
+            </div>
+
+            <div className="p-6 bg-orange-50 rounded-3xl space-y-4">
+                <h4 className="text-[10px] font-black text-orange-400 uppercase tracking-widest flex items-center gap-2">
+                    <Lock className="w-3 h-3" /> Security Update
+                </h4>
+                <div className="grid grid-cols-2 gap-4">
+                    <input type="password" placeholder="New Password" onChange={(e) => setFormData({...formData, password: e.target.value})} className="w-full p-3 bg-white border-none rounded-xl text-sm font-bold" />
+                    <input type="password" placeholder="Confirm" onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})} className="w-full p-3 bg-white border-none rounded-xl text-sm font-bold" />
+                </div>
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Username</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">New Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Profile Image from Link</label>
-            <input
-              type="text"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Or Upload from System</label>
-            <input
-              type="file"
-              onChange={handleFileChange}
-              className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
-            />
-          </div>
-          <div className="flex justify-end gap-4">
-            <button type="button" onClick={onClose} className="btn btn-ghost">Cancel</button>
-            <button type="submit" className="btn btn-primary">Save</button>
+
+          <div className="flex justify-end gap-4 mt-8 pt-6 border-t border-gray-100">
+              <button type="button" onClick={onClose} className="px-8 py-4 rounded-2xl font-black text-gray-400 hover:text-gray-600 transition-colors">Cancel</button>
+              <button type="submit" className="px-10 py-4 bg-gray-900 text-white rounded-2xl font-black shadow-xl shadow-gray-200 hover:bg-black transition-all">Save Changes</button>
           </div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 };

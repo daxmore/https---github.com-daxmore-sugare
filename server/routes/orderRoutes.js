@@ -1,20 +1,14 @@
-const router = require('express').Router();
-const { verifyToken, verifyTokenAndAdmin } = require('./verifyToken');
-const orderController = require('../controllers/orderController');
+const express = require('express');
+const router = express.Router();
+const { createOrder, getMyOrders, getAllOrders, updateOrderStatus, reportOrder } = require('../controllers/orderController');
+const { verifyToken, verifyAdmin } = require('./verifyToken');
 
-// Create Order
-router.post('/', verifyToken, orderController.createOrder);
+router.post('/', verifyToken, createOrder);
+router.get('/my-orders', verifyToken, getMyOrders);
 
-// Get User Orders
-router.get('/my-orders', verifyToken, orderController.getUserOrders);
-
-// Get All Orders (Admin)
-router.get('/', verifyTokenAndAdmin, orderController.getAllOrders);
-
-// Update Order Status (Admin)
-router.put('/:id/status', verifyTokenAndAdmin, orderController.updateOrderStatus);
-
-// Delete Order
-router.delete('/:id', verifyToken, orderController.deleteOrder);
+// Admin Routes
+router.get('/all', verifyAdmin, getAllOrders);
+router.patch('/:id/status', verifyAdmin, updateOrderStatus);
+router.patch('/:id/report', verifyToken, reportOrder);
 
 module.exports = router;
